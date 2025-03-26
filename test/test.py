@@ -1,3 +1,3 @@
 import main
 
-print(main.table["H"])
+print(main.table["Br"]["electronegativity"])
