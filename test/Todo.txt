@@ -1,0 +1,7 @@
+Solution: constant dict
+
+from types import MappingProxyType
+table = MappingProxyType({
+                             'H': {"atomic_number": 1, "atomic_weight": 1.008},
+                             "He": {"atomic_number": 2, "atomic_weight": 4.0026},
+                         })
