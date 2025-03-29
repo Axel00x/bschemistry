@@ -1,7 +1,19 @@
-Solution: constant dict
+Solution: constant dict (real fix)
 
 from types import MappingProxyType
-table = MappingProxyType({
-                             'H': {"atomic_number": 1, "atomic_weight": 1.008},
-                             "He": {"atomic_number": 2, "atomic_weight": 4.0026},
-                         })
+
+def deep_freeze(obj):
+    if isinstance(obj, dict):
+        return MappingProxyType({k: deep_freeze(v) for k, v in obj.items()})
+    elif isinstance(obj, list):
+        return tuple(deep_freeze(i) for i in obj)
+    return obj
+
+_table = {
+    'H': {"atomic_number": 1, "atomic_weight": 1.008},
+    "He": {"atomic_number": 2, "atomic_weight": 4.0026},
+}
+
+table = deep_freeze(_table)
+
+table["H"]["atomic_weight"] = 45  
