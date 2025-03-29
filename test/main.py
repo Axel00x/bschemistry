@@ -20,27 +20,42 @@
         'yr': 0 
     },
 '''
-class Element():
-        def __init__(self, name, symbol, a_num, a_mass, a_radius, electron_config, electronegativity, electron_affinity, ionization_energies, e_class, oxidation_nums, melting_temp, boiling_temp, d, yr):
-            self.name = name
-            self.symbol = symbol
-            self.a_num = a_num
-            self.a_mass = a_mass
-            self.a_radius = a_radius
-            self.electron_config = electron_config
-            self.electronegativity = electronegativity
-            self.electron_affinity = electron_affinity
-            self.ionization_energies = ionization_energies
-            self.e_class = e_class
-            self.oxidation_nums = oxidation_nums
-            self.melting_temp = melting_temp
-            self.boiling_temp = boiling_temp
-            self.d = d
-            self.yr = yr  
+class Element:
+    __slots__ = (
+        "name", "symbol", "a_num", "a_mass", "a_radius", "electron_config", 
+        "electronegativity", "electron_affinity", "ionization_energies", 
+        "e_class", "oxidation_nums", "melting_temp", "boiling_temp", "d", "yr",
+        "_initialized"
+    )
+    
+    def __init__(self, name, symbol, a_num, a_mass, a_radius, electron_config, 
+                 electronegativity, electron_affinity, ionization_energies, e_class, 
+                 oxidation_nums, melting_temp, boiling_temp, d, yr):
+        self.name = name
+        self.symbol = symbol
+        self.a_num = a_num
+        self.a_mass = a_mass
+        self.a_radius = a_radius
+        self.electron_config = electron_config
+        self.electronegativity = electronegativity
+        self.electron_affinity = electron_affinity
+        self.ionization_energies = ionization_energies
+        self.e_class = e_class
+        self.oxidation_nums = oxidation_nums
+        self.melting_temp = melting_temp
+        self.boiling_temp = boiling_temp
+        self.d = d
+        self.yr = yr  
+        self._initialized = True
+
+    def __setattr__(self, key, value):
+        if hasattr(self, '_initialized'):
+            raise AttributeError("Element objects are immutable")
+        super().__setattr__(key, value)
             
-class Table():
+class Table:
     def __init__(self):
-        self.table = {
+        data = {
             'H': {
                 'name': 'Hydrogen',
                 'symbol': 'H',
@@ -806,32 +821,184 @@ class Table():
                 'd': 12400,
                 'yr': 1803 
             },
+            'Pd': {
+                'name': 'Palladium',
+                'symbol': 'Pd',
+                'a_num': 46,
+                'a_mass': 106.4,
+                'a_radius': 138,
+                'electron_config': '[Kr]4d10', 
+                'electronegativity': 2.2,
+                'electron_affinity': 53.7,
+                'ionization_energies': 805,
+                'class': 'd block transition metal',
+                'oxidation_nums': [2, 4],
+                'melting_temp': 1826, 
+                'boiling_temp': 3236,
+                'd': 12000,
+                'yr': 1803 
+            },
+            'Ag': {
+                'name': 'Silver',
+                'symbol': 'Ag',
+                'a_num': 47,
+                'a_mass': 107.9,
+                'a_radius': 144,
+                'electron_config': '[Kr]4d105s1', 
+                'electronegativity': 1.93,
+                'electron_affinity': 125.6,
+                'ionization_energies': 731,
+                'class': 'd block transition metal',
+                'oxidation_nums': [1],
+                'melting_temp': 1235, 
+                'boiling_temp': 2435,
+                'd': 10500,
+                'yr': 0 
+            },
+            'Cd': {
+                'name': 'Cadmium',
+                'symbol': 'Cd',
+                'a_num': 48,
+                'a_mass': 112.4,
+                'a_radius': 154,
+                'electron_config': '[Kr]4d105s2', 
+                'electronegativity': 1.69,
+                'electron_affinity': None,
+                'ionization_energies': 868,
+                'class': 'd block transition metal',
+                'oxidation_nums': [2],
+                'melting_temp': 594, 
+                'boiling_temp': 1038,
+                'd': 8650,
+                'yr': 1817 
+            },
+            'In': {
+                'name': 'Indium',
+                'symbol': 'In',
+                'a_num': 49,
+                'a_mass': 114.8,
+                'a_radius': 166,
+                'electron_config': '[Kr]4d105s25p1', 
+                'electronegativity': 1.78,
+                'electron_affinity': 28.9,
+                'ionization_energies': 558,
+                'class': 'p block transition metal',
+                'oxidation_nums': [3],
+                'melting_temp': 430, 
+                'boiling_temp': 2345,
+                'd': 7310,
+                'yr': 1863 
+            },
+            'Sn': {
+                'name': 'Tin',
+                'symbol': 'Sn',
+                'a_num': 50,
+                'a_mass': 118.7,
+                'a_radius': 162,
+                'electron_config': '[Kr]4d105s25p2', 
+                'electronegativity': 1.96,
+                'electron_affinity': 107.3,
+                'ionization_energies': 709,
+                'class': 'p block transition metal',
+                'oxidation_nums': [2, 4],
+                'melting_temp': 505, 
+                'boiling_temp': 2875,
+                'd': 7290,
+                'yr': 0 
+            },
+            'Sb': {
+                'name': 'Antimony',
+                'symbol': 'Sb',
+                'a_num': 51,
+                'a_mass': 121.8,
+                'a_radius': 159,
+                'electron_config': '[Kr]4d105s25p3', 
+                'electronegativity': 2.05,
+                'electron_affinity': 103.2,
+                'ionization_energies': 834,
+                'class': 'semimetal',
+                'oxidation_nums': [-3, 3, 5],
+                'melting_temp': 904, 
+                'boiling_temp': 1860,
+                'd': 6680,
+                'yr': 0 
+            },
+            'Te': {
+                'name': 'Tellurium',
+                'symbol': 'Te',
+                'a_num': 52,
+                'a_mass': 127.6,
+                'a_radius': 160,
+                'electron_config': '[Kr]4d105s25p4', 
+                'electronegativity': 2.1,
+                'electron_affinity': 190.2,
+                'ionization_energies': 869,
+                'class': 'semimetal',
+                'oxidation_nums': [-2, 4, 6],
+                'melting_temp': 723, 
+                'boiling_temp': 1261,
+                'd': 6240,
+                'yr': 1782 
+            },
+            'I': {
+                'name': 'Iodine',
+                'symbol': 'I',
+                'a_num': 53,
+                'a_mass': 126.9,
+                'a_radius': 133,
+                'electron_config': '[Kr]4d105s25p5', 
+                'electronegativity': 2.66,
+                'electron_affinity': 295.2,
+                'ionization_energies': 1008,
+                'class': 'halogens',
+                'oxidation_nums': [-1, 1, 3, 5, 7],
+                'melting_temp': 387, 
+                'boiling_temp': 457,
+                'd': 4930,
+                'yr': 1811 
+            },
+            'Xe': {
+                'name': 'Xenon',
+                'symbol': 'Xe',
+                'a_num': 54,
+                'a_mass': 131.3,
+                'a_radius': 220,
+                'electron_config': '[Kr]4d105s25p6', 
+                'electronegativity': 2.6,
+                'electron_affinity': None,
+                'ionization_energies': 1170,
+                'class': 'noble gas',
+                'oxidation_nums': [],
+                'melting_temp': 161, 
+                'boiling_temp': 166,
+                'd': 5.9,
+                'yr': 1898 
+            },
         }
-        
-        #print(self.table.elem)
-        
-        for i in self.table:
-            self.table[i] = Element(self.table[i]["name"],
-                                   self.table[i]["symbol"],
-                                   self.table[i]["a_num"],
-                                   self.table[i]["a_mass"],
-                                   self.table[i]["a_radius"],
-                                   self.table[i]["electron_config"],
-                                   self.table[i]["electronegativity"],
-                                   self.table[i]["electron_affinity"],
-                                   self.table[i]["ionization_energies"],
-                                   self.table[i]["class"],
-                                   self.table[i]["oxidation_nums"],
-                                   self.table[i]["melting_temp"],
-                                   self.table[i]["boiling_temp"],
-                                   self.table[i]["d"],
-                                   self.table[i]["yr"])
-    
+                
+        self.table = {}
+        for key, value in data.items():
+            self.table[key] = Element(
+                value["name"],
+                value["symbol"],
+                value["a_num"],
+                value["a_mass"],
+                value["a_radius"],
+                value["electron_config"],
+                value["electronegativity"],
+                value["electron_affinity"],
+                value["ionization_energies"],
+                value["class"],
+                value["oxidation_nums"],
+                value["melting_temp"],
+                value["boiling_temp"],
+                value["d"],
+                value["yr"]
+            )
+            
     def elem(self, ind):
         return self.table[ind]
                
 t = Table()
 
-t.elem("O").yr = 10 # NON deve accadere
-
-print(t.elem("O").yr)
+print(t.elem("O"))
