@@ -1,4 +1,3 @@
-import main
+from main import *
 
-# main.table["Br"]["electronegativity"] = 104
-print(main.table["Br"]["electronegativity"])
+print(t.elem("O").name)
