@@ -31,7 +31,7 @@ To receive a dictionary about an element of the periodic table from the table us
 ```python
 import bschemistry as ch
 
-t = Table()
+t = ch.Table()
 
 print(t.elem("H").name)
 ```
@@ -41,7 +41,7 @@ To get a single datum about an element use:
 ```python
 import bschemistry as ch
 
-t = Table()
+t = ch.Table()
 
 print(t.elem("H").a_mass) # take the atomic mass of element H (Hydrogen)
 ```
