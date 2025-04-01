@@ -1,1 +1,2 @@
-Nothing
+1. Create all Elements
+2. Format function for Molecules
