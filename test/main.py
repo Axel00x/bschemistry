@@ -2086,5 +2086,3 @@ class Table:
             
     def elem(self, ind):
         return self.table[ind]
-               
-t = Table()
