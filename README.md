@@ -1,5 +1,5 @@
 # bschemistry
-#### v0.1.0
+#### v0.1.1
 
 Bschemistry (basic chemistry) is a library that contains the basic functions to use chemistry on Python as well!
 It has a complete and accurate periodic table with all data updated regularly and frequent updates for new functions and features.
@@ -26,7 +26,7 @@ Example of the table structure:
 
 ## Practical examples
 
-To receive a dictionary about an element of the periodic table from the table use:
+To receive the name about an element of the periodic table from the table use:
 
 ```python
 import bschemistry as ch
@@ -44,4 +44,15 @@ import bschemistry as ch
 t = ch.Table()
 
 print(t.elem("H").a_mass) # take the atomic mass of element H (Hydrogen)
+```
+
+To receive a dictionary of a formatted molecule use the function `format(“molecule”)`:
+
+```python
+import bschemistry as ch
+
+print(ch.format("{1}H2O"))
+
+# Output:
+# {'1': {'H': 2, 'O': 1}}
 ```

@@ -1,5 +1,7 @@
 # test file
 
+import re
+
 # template:
 '''
     '': {
@@ -2086,3 +2088,17 @@ class Table:
             
     def elem(self, ind):
         return self.table[ind]
+    
+def parse_formula(formula):
+    pattern = r'([A-Z][a-z]?)(\d*)'
+    counts = {}
+    for element, count in re.findall(pattern, formula):
+        counts[element] = counts.get(element, 0) + (int(count) if count else 1)
+    return counts
+
+def format(elem):
+    match = re.match(r'\{(.*?)\}(.*)', elem)
+    if not match:
+        raise ValueError("Invalid format")    
+    key, formula = match.groups()
+    return {key: parse_formula(formula)}
