@@ -1,7 +1,7 @@
 # test file
 
 import re
-import math
+from itertools import product
 
 # template:
 '''
@@ -2117,3 +2117,79 @@ def calc_mass(elem):
                 mass += table.elem(atom).a_mass * elem[molec][atom]
     
     return mass
+
+
+def stabilize(elem_list1, elem_list2):
+    left_formatted = [format(elem) for elem in elem_list1]
+    right_formatted = [format(elem) for elem in elem_list2]
+    
+    all_elements = set()
+    init_left = []
+    left_formulas = []
+    for compound in left_formatted:
+        coeff_str = list(compound.keys())[0]
+        init_left.append(int(coeff_str))
+        formula = list(compound.values())[0]
+        left_formulas.append(formula)
+        all_elements.update(formula.keys())
+        
+    init_right = []
+    right_formulas = []
+    for compound in right_formatted:
+        coeff_str = list(compound.keys())[0]
+        init_right.append(int(coeff_str))
+        formula = list(compound.values())[0]
+        right_formulas.append(formula)
+        all_elements.update(formula.keys())
+    
+    n_left = len(left_formulas)
+    n_right = len(right_formulas)
+    
+    left_ranges = [range(init_left[i], 11) for i in range(n_left)]
+    right_ranges = [range(init_right[j], 11) for j in range(n_right)]
+    
+    solution = None
+    for left_coeffs in product(*left_ranges):
+        for right_coeffs in product(*right_ranges):
+            balanced = True
+            for element in all_elements:
+                left_sum = sum(left_coeffs[i] * left_formulas[i].get(element, 0) for i in range(n_left))
+                right_sum = sum(right_coeffs[j] * right_formulas[j].get(element, 0) for j in range(n_right))
+                if left_sum != right_sum:
+                    balanced = False
+                    break
+            if balanced:
+                solution = (left_coeffs, right_coeffs)
+                break
+        if solution:
+            break
+
+    if solution:
+        left_new, right_new = solution
+        new_left = []
+        for i in range(n_left):
+            formula = left_formulas[i]
+            new_formula = ""
+            for atom in sorted(formula.keys()):
+                cnt = formula[atom]
+                new_formula += atom + (str(cnt) if cnt != 1 else "")
+            new_left.append("{" + str(left_new[i]) + "}" + new_formula)
+        
+        new_right = []
+        for j in range(n_right):
+            formula = right_formulas[j]
+            new_formula = ""
+            for atom in sorted(formula.keys()):
+                cnt = formula[atom]
+                new_formula += atom + (str(cnt) if cnt != 1 else "")
+            new_right.append("{" + str(right_new[j]) + "}" + new_formula)
+            
+        return new_left, new_right
+    else:
+        return elem_list1, elem_list2
+
+# Esempio di utilizzo:
+# reactants, products = stabilize(["{1}H2SO4", "{1}KMnO4"], ["{1}K2SO4", "{1}HMnO4"])
+reactants, products = stabilize(["{1}H2", "{1}Cl2"], ["{1}HCl"])
+print("Reagenti:", reactants)
+print("Prodotti:", products)

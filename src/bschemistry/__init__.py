@@ -2087,6 +2087,8 @@ class Table:
     def elem(self, ind):
         return self.table[ind]
     
+table = Table()
+
 def parse_formula(formula):
     pattern = r'([A-Z][a-z]?)(\d*)'
     counts = {}
@@ -2097,7 +2099,17 @@ def parse_formula(formula):
 def format(elem):
     match = re.match(r'\{(.*?)\}(.*)', elem)
     if not match:
-        raise ValueError("Invalid format")
-    
+        raise ValueError("Invalid format")    
     key, formula = match.groups()
     return {key: parse_formula(formula)}
+
+def calc_mass(elem):
+    mass = 0
+    for molec in elem.keys():
+        for i in range(int(molec)):
+            for atom in elem[molec].keys():
+                if atom not in table.table:
+                    raise ValueError(f"Element {atom} not found in the periodic table")
+                mass += table.elem(atom).a_mass * elem[molec][atom]
+    
+    return mass
