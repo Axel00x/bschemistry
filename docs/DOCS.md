@@ -15,25 +15,25 @@ To update it simply run the command `pip install bschemistry --upgrade` on the c
 To start using bschemistry it must first be imported.
 ```python
 import bschemistry as ch
-``
+```
 Once this is done you can create a periodic table with the following code:
-``python
+```python
 import bschemistry as ch
 
 t = ch.Table()
-``
+```
 Once the table has been initialized you can access its elements with the `elem()` function. 
 For example:
-``python
+```python
 import bschrmistry as ch
 
 t = ch.Table()
 
 print(t.elem("O").a_mass) # print the atomic mass of O (Oxygen)
-``
+```
 
 ## Data available
-``python
+```python
 'name': 'Hydrogen',
 'symbol': 'H',
 'a_num': 1,
@@ -49,7 +49,7 @@ print(t.elem("O").a_mass) # print the atomic mass of O (Oxygen)
 'boiling_temp': 20, # K
 'd': 0.0899, # g/L
 'yr': 1766 # year of discovery
-``
+```
 
 ## Functions
 #### format(elem)
