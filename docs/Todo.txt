@@ -1,2 +1,3 @@
 1. Stabilize() function in test folder
 2. Smaller names for quick access (es. a_mass to mass)
+3. Functions for unit conversion of some data

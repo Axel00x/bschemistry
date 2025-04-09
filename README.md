@@ -1,5 +1,5 @@
 # bschemistry
-#### v0.1.1
+#### v0.1.2
 
 Bschemistry (basic chemistry) is a library that contains the basic functions to use chemistry on Python as well!
 It has a complete and accurate periodic table with all data updated regularly and frequent updates for new functions and features.

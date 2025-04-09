@@ -1,5 +1,5 @@
 # bschemistry
-### v0.1.1
+### v0.1.2
 
 Welcome to bschemistry! (Full name: basic chemistry)
 
@@ -51,8 +51,10 @@ print(t.elem("O").a_mass) # print the atomic mass of O (Oxygen)
 'yr': 1766 # year of discovery
 ```
 
+---
+
 ## Functions
-#### format(elem)
+### `format(elem)`
 To receive a dictionary of a formatted molecule:
 ```python
 import bschemistry as ch
@@ -60,5 +62,15 @@ import bschemistry as ch
 print(ch.format("{1}H2O")
 
 # output:
-# {'1':{ 'H': 2, 'O': 1}}
+# {'1':{'H': 2, 'O': 1}}
+```
+
+### `calc_mass(elem)`
+Calculate the atomic mass of the element. 
+```python
+import bschemistry as ch
+
+H2O = ch.format("{1}H2O")
+
+print(ch.calc_mass(H2O)) # 18.01588
 ```

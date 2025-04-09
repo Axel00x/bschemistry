@@ -2191,5 +2191,5 @@ def stabilize(elem_list1, elem_list2):
 # Esempio di utilizzo:
 # reactants, products = stabilize(["{1}H2SO4", "{1}KMnO4"], ["{1}K2SO4", "{1}HMnO4"])
 reactants, products = stabilize(["{1}H2", "{1}Cl2"], ["{1}HCl"])
-print("Reagenti:", reactants)
-print("Prodotti:", products)
+print("Reactants:", reactants)
+print("Products:", products)
