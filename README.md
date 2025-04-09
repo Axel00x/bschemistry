@@ -24,35 +24,5 @@ Example of the table structure:
 'yr': 1766                   # year of discovery
 ```
 
-## Practical examples
-
-To receive the name about an element of the periodic table from the table use:
-
-```python
-import bschemistry as ch
-
-t = ch.Table()
-
-print(t.elem("H").name)
-```
-
-To get a single datum about an element use:
-
-```python
-import bschemistry as ch
-
-t = ch.Table()
-
-print(t.elem("H").a_mass) # take the atomic mass of element H (Hydrogen)
-```
-
-To receive a dictionary of a formatted molecule use the function `format(“molecule”)`:
-
-```python
-import bschemistry as ch
-
-print(ch.format("{1}H2O"))
-
-# Output:
-# {'1': {'H': 2, 'O': 1}}
-``` 
+## Manual, documentation and FAQ
+To view the **documentation** for this project visit [DOCS.md](docs/DOCS.md).
