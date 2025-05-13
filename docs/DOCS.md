@@ -37,7 +37,7 @@ print(t.elem("O").a_mass) # print the atomic mass of O (Oxygen)
 'name': 'Hydrogen',
 'symbol': 'H',
 'a_num': 1,
-'a_mass': 1. 00794, # u
+'a_mass': 1.00794, # u
 'a_radius': 30, # pm (picometers)
 'electron_config': '1s1', 
 'electronegativity': 2.2, # Pauling's scale
